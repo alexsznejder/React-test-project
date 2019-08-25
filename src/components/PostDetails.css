@@ -1,0 +1,30 @@
+main span {
+  color: rgb(52, 149, 182);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+span.addComment {
+  float: right;
+}
+
+main article {
+  margin-bottom: 50px;
+}
+
+ul.comments {
+  padding: 0;
+}
+
+li.comment {
+  padding: 10px;
+  font-size: 14px;
+  border: 3px solid black;
+  box-sizing: border-box;         
+  margin: 10px 0;
+  list-style: none;
+}
+
+li.comment div.header{
+  display: flex;
+}

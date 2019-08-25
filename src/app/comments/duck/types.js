@@ -1,0 +1,7 @@
+const ADD_COMMENT = "ADD_COMMENT";
+const RESET_COMMENT = "RESET_COMMENT";
+
+export default {
+  ADD_COMMENT,
+  RESET_COMMENT
+};

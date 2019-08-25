@@ -1,0 +1,128 @@
+header {
+  text-align: center;
+  margin: 0 auto;
+  height: 100px;
+  width: 90%;
+  display: flex;
+}
+
+header div.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 0;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+i {
+  color: rgb(52, 149, 182);
+  cursor: pointer;
+}
+
+header h1 {
+  flex-grow: 1;
+}
+
+main {
+  margin: 0 auto;
+  width: 80%;
+}
+
+ul.posts {
+  padding: 0;
+}
+
+li.post {
+  display: flex;
+  border: 3px solid black;
+  box-sizing: border-box;         
+  margin: 10px 0;
+  list-style: none;
+  justify-content: flex-start;
+  align-content: center;
+}
+
+li div.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+li.post i {
+  margin: 0 10px;
+  
+}
+
+li.post p {
+  flex-grow: 1;
+  justify-self: flex-start;
+}
+
+.Modal {
+  background-color: #fff;
+  width: 400px;
+  /* height: 500px; */
+  margin: 10% auto;
+  text-align: center;
+  padding: 5px 5px 15px 5px;
+  box-sizing: border-box;
+  border: 3px solid black;
+}
+
+.Modal form {
+  margin-top: 40px;
+}
+
+.Modal div.labels, div.inputs {
+  display: inline-block;
+}
+
+.Modal div.labels {
+  width: 20%;
+  vertical-align: top;
+  text-align: left;
+  font-size: 16px;
+}
+
+.Modal div.inputs {
+  width: 70%;  
+}
+
+.Modal input, textarea, label {
+  display: block;
+  width: 100%;
+  font-size: 16px;
+  box-sizing: border-box;
+  padding: 4px;
+}
+
+.Modal input, textarea {
+  border: 2px solid black
+}
+
+.Modal textarea {
+  height: 130px;
+}
+.Modal div.row {
+  margin-bottom: 20px;
+}
+
+.Modal div.row:last-of-type {
+  text-align: right;
+  padding: 0 10px;
+}
+
+.Modal button {
+  border: 2px solid black;
+  padding: 8px 0;
+  width: 25%;
+  margin: 10px;
+  background-color: #fff;
+}
+
+.Modal button.blueButton {
+  background-color:  rgb(52, 149, 182);
+  color: white;
+}
