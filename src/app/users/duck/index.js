@@ -1,5 +1,5 @@
 import usersReducer from "./reducers";
 
-export { default as userTypes } from "./types";
-export { default as userActions } from "./actions";
+export { ADD_USER, GET_USERS, RESET_USERS } from "./types";
+export { addUser, resetUsers, getUsers } from "./actions";
 export default usersReducer;

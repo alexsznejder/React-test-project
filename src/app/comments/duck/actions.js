@@ -1,16 +1,27 @@
-import types from "./types";
+import { GET_COMMENTS, ADD_COMMENT, RESET_COMMENT } from "./types";
 
-const add = item => ({
-  type: types.ADD_COMMENT,
-  item
+export const addCommentAction = comment => ({
+  type: ADD_COMMENT,
+  payload: { comment }
 });
 
-const reset = item => ({
-  type: types.RESET_COMMENT,
-  item
-})
+export const resetCommentAction = () => ({
+  type: RESET_COMMENT
+});
 
-export default {
-  add,
-  reset
+export const getCommentsAction = comments => ({
+  type: GET_COMMENTS,
+  payload: { comments }
+});
+
+export const getComments = () => async dispatch => {
+  const response = await fetch(
+    "https://jsonplaceholder.typicode.com/comments",
+    {
+      method: "GET"
+    }
+  );
+  const comments = await response.json();
+
+  dispatch(getCommentsAction(comments));
 };

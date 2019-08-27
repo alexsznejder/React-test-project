@@ -1,22 +1,39 @@
-import types from "./types";
+import {
+  ADD_POST,
+  DELETE_POST,
+  GET_POSTS,
+  INCREMENT_COUNTER,
+  RESET_POSTS
+} from "./types";
 
-const add = item => ({
-  type: types.ADD_POST,
-  item
+export const addPostAction = post => ({
+  type: ADD_POST,
+  payload: post
 });
 
-const reset = item => ({
-  type: types.RESET_POSTS,
-  item
+export const resetPostsAction = () => ({
+  type: RESET_POSTS
 });
 
-const increment = item => ({
-  type: types.INCREMENT_COUNTER,
-  item
+export const incrementCounterAction = () => ({
+  type: INCREMENT_COUNTER
 });
 
-export default {
-  add,
-  reset,
-  increment
+export const getPostsAction = posts => ({
+  type: GET_POSTS,
+  payload: { posts }
+});
+
+export const deletePostAction = posts => ({
+  type: DELETE_POST,
+  payload: { posts }
+});
+
+export const getPosts = () => async dispatch => {
+  const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
+    method: "GET"
+  });
+  const posts = await response.json();
+
+  dispatch(getPostsAction(posts));
 };

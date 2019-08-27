@@ -1,5 +1,11 @@
 import postsReducer from "./reducers";
 
-export { default as postTypes } from "./types";
-export { default as postActions } from "./actions";
+export {
+  ADD_POST,
+  DELETE_POST,
+  GET_POSTS,
+  INCREMENT_COUNTER,
+  RESET_POSTS
+} from "./types";
+export { getPosts } from "./actions";
 export default postsReducer;
