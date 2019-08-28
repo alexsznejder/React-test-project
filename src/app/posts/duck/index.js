@@ -7,5 +7,5 @@ export {
   INCREMENT_COUNTER,
   RESET_POSTS
 } from "./types";
-export { getPosts } from "./actions";
+export { getPosts, addPost, deletePost, incrementCounter } from "./actions";
 export default postsReducer;

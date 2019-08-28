@@ -8,7 +8,7 @@ import {
 
 export const addPostAction = post => ({
   type: ADD_POST,
-  payload: post
+  payload: { post }
 });
 
 export const resetPostsAction = () => ({
@@ -24,9 +24,9 @@ export const getPostsAction = posts => ({
   payload: { posts }
 });
 
-export const deletePostAction = posts => ({
+export const deletePostAction = id => ({
   type: DELETE_POST,
-  payload: { posts }
+  payload: { id }
 });
 
 export const getPosts = () => async dispatch => {
@@ -36,4 +36,20 @@ export const getPosts = () => async dispatch => {
   const posts = await response.json();
 
   dispatch(getPostsAction(posts));
+};
+
+export const addPost = post => dispatch => {
+  dispatch(addPostAction(post));
+};
+
+export const resetPosts = () => dispatch => {
+  dispatch(resetPostsAction());
+};
+
+export const incrementCounter = () => dispatch => {
+  dispatch(incrementCounterAction());
+};
+
+export const deletePost = id => dispatch => {
+  dispatch(deletePostAction(id));
 };

@@ -4,7 +4,11 @@ import { connect } from "react-redux";
 import "./PostDetails.css";
 import Modal from "react-modal";
 import Comment from "./Comment";
-import { getComments } from "../app/comments/duck";
+import {
+  getComments,
+  addComment,
+  incrementCounter
+} from "../app/comments/duck";
 
 class PostDetails extends React.Component {
   constructor(props) {
@@ -18,13 +22,44 @@ class PostDetails extends React.Component {
       ),
       post: this.props.posts.list.find(
         post => post.id == this.props.match.params.postId
-      )
+      ),
+      name: "",
+      email: "",
+      body: ""
     };
   }
 
   handleShowClick = () => {
     this.setState({
       showComments: !this.state.showComments
+    });
+  };
+
+  handleSaveClick = e => {
+    e.preventDefault();
+    const comment = {
+      postId: this.state.post.id,
+      id: this.props.comments.counter + 1,
+      name: this.state.name,
+      email: this.state.email,
+      body: this.state.body
+    };
+    this.props.addComment(comment);
+    this.props.incrementCounter();
+
+    this.setState({
+      name: "",
+      email: "",
+      body: "",
+      isActive: false
+    });
+    console.log(comment);
+  };
+
+  handleChange = e => {
+    const name = e.target.name;
+    this.setState({
+      [name]: e.target.value
     });
   };
 
@@ -90,7 +125,7 @@ class PostDetails extends React.Component {
                   <input
                     id="title"
                     type="text"
-                    name="title"
+                    name="name"
                     onChange={this.handleChange}
                   ></input>
                 </div>
@@ -140,5 +175,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getComments }
+  { getComments, addComment, incrementCounter }
 )(PostDetails);

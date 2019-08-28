@@ -1,6 +1,7 @@
-import { GET_COMMENTS, ADD_COMMENT, RESET_COMMENT } from "./types";
+import { GET_COMMENTS, ADD_COMMENT, INCREMENT_COUNTER } from "./types";
 
 const INITIAL_STATE = {
+  counter: 0,
   list: []
 };
 
@@ -11,12 +12,12 @@ const commentsReducer = (state = INITIAL_STATE, action) => {
     case ADD_COMMENT:
       return {
         ...state,
-        list: [...state, action.item]
+        list: [...state.list, payload.comment]
       };
-    case RESET_COMMENT:
+    case INCREMENT_COUNTER:
       return {
         ...state,
-        list: []
+        counter: state.counter + 1
       };
     case GET_COMMENTS:
       return {

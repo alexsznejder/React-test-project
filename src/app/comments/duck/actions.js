@@ -1,12 +1,12 @@
-import { GET_COMMENTS, ADD_COMMENT, RESET_COMMENT } from "./types";
+import { GET_COMMENTS, ADD_COMMENT, INCREMENT_COUNTER } from "./types";
 
 export const addCommentAction = comment => ({
   type: ADD_COMMENT,
   payload: { comment }
 });
 
-export const resetCommentAction = () => ({
-  type: RESET_COMMENT
+export const incrementCounterAction = () => ({
+  type: INCREMENT_COUNTER
 });
 
 export const getCommentsAction = comments => ({
@@ -24,4 +24,12 @@ export const getComments = () => async dispatch => {
   const comments = await response.json();
 
   dispatch(getCommentsAction(comments));
+};
+
+export const addComment = comment => dispatch => {
+  dispatch(addCommentAction(comment));
+};
+
+export const incrementCounter = () => dispatch => {
+  dispatch(incrementCounterAction());
 };

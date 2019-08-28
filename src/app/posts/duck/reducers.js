@@ -18,7 +18,7 @@ const postsReducer = (state = INITIAL_STATE, action) => {
     case ADD_POST:
       return {
         ...state,
-        list: [...state.list, action.item]
+        list: [...state.list, payload.post]
       };
     case RESET_POSTS:
       return {
@@ -32,12 +32,13 @@ const postsReducer = (state = INITIAL_STATE, action) => {
     case GET_POSTS:
       return {
         ...state,
-        list: payload.posts
+        list: payload.posts,
+        counter: payload.posts.length
       };
     case DELETE_POST:
       return {
         ...state,
-        list: payload.posts
+        list: state.list.filter(post => post.id != payload.id)
       };
     default:
       return state;

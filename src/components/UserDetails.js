@@ -4,7 +4,12 @@ import "./UserDetails.css";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
 import { connect } from "react-redux";
-import { getPosts } from "../app/posts/duck";
+import {
+  getPosts,
+  addPost,
+  deletePost,
+  incrementCounter
+} from "../app/posts/duck";
 
 Modal.setAppElement("#root");
 
@@ -13,7 +18,9 @@ class UserDetails extends React.Component {
     isActive: false,
     title: "",
     body: "",
-    userId: this.props.match.params.userId
+    user: this.props.users.list.find(
+      user => user.id == this.props.match.params.userId
+    )
   };
 
   openModal() {
@@ -38,19 +45,14 @@ class UserDetails extends React.Component {
   handleSaveClick = e => {
     e.preventDefault();
     const post = {
-      userId: this.props.match.params.userId,
+      userId: this.state.user.id,
       id: this.props.posts.counter + 1,
       title: this.state.title,
       body: this.state.body
     };
-    this.props.add(post);
-    this.props.increment();
-    this.userPosts = this.props.posts.list.filter(
-      post => post.userId == this.user.id
-    );
-    this.postsList = this.userPosts.map(post => (
-      <Post key={post.id} post={post} user={this.user} />
-    ));
+    this.props.addPost(post);
+    this.props.incrementCounter();
+
     this.setState({
       title: "",
       body: "",
@@ -59,41 +61,27 @@ class UserDetails extends React.Component {
     console.log(post);
   };
 
-  deletePost = id => {};
+  deletePost = id => {
+    this.props.deletePost(id);
+  };
 
   componentDidMount = () => {
     this.props.getPosts();
   };
 
-  user = this.props.users.list.find(
-    user => user.id == this.props.match.params.userId
-  );
-  userPosts = this.props.posts.list.filter(post => post.userId == this.user.id);
-  postsList = this.userPosts.map(post => (
-    <Post
-      key={post.id}
-      post={post}
-      user={this.user}
-      deletePost={this.deletePost}
-    />
-  ));
-
   postsList = () => {
     const userPosts = this.props.posts.list.filter(
-      post => post.userId == this.state.userId
+      post => post.userId == this.state.user.id
     );
     return userPosts.map(post => (
       <Post
         key={post.id}
         post={post}
-        user={this.user}
+        user={this.state.user}
         deletePost={this.deletePost}
       />
     ));
   };
-
-  userName = () =>
-    this.props.users.list.find(user => user.id == this.state.userId).name;
 
   render() {
     return (
@@ -104,7 +92,7 @@ class UserDetails extends React.Component {
               <i className="fa fa-arrow-left fa-3x" />
             </Link>
           </div>
-          <h1>{this.userName()}</h1>
+          <h1>{this.state.user.name}</h1>
           <div className="icon">
             <i
               onClick={() => this.openModal()}
@@ -161,5 +149,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getPosts }
+  { getPosts, addPost, deletePost, incrementCounter }
 )(UserDetails);
