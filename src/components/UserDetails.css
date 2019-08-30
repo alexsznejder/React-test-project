@@ -36,7 +36,7 @@ ul.posts {
 li.post {
   display: flex;
   border: 3px solid black;
-  box-sizing: border-box;         
+  box-sizing: border-box;
   margin: 10px 0;
   list-style: none;
   justify-content: flex-start;
@@ -52,7 +52,6 @@ li div.icon {
 
 li.post i {
   margin: 0 10px;
-  
 }
 
 li.post p {
@@ -75,7 +74,8 @@ li.post p {
   margin-top: 40px;
 }
 
-.Modal div.labels, div.inputs {
+.Modal div.labels,
+div.inputs {
   display: inline-block;
 }
 
@@ -87,10 +87,12 @@ li.post p {
 }
 
 .Modal div.inputs {
-  width: 70%;  
+  width: 70%;
 }
 
-.Modal input, textarea, label {
+.Modal input,
+textarea,
+label {
   display: block;
   width: 100%;
   font-size: 16px;
@@ -98,8 +100,9 @@ li.post p {
   padding: 4px;
 }
 
-.Modal input, textarea {
-  border: 2px solid black
+.Modal input,
+textarea {
+  border: 2px solid black;
 }
 
 .Modal textarea {
@@ -109,12 +112,17 @@ li.post p {
   margin-bottom: 20px;
 }
 
+.Modal div.errors {
+  color: red;
+}
+
 .Modal div.row:last-of-type {
   text-align: right;
   padding: 0 10px;
 }
 
 .Modal button {
+  cursor: pointer;
   border: 2px solid black;
   padding: 8px 0;
   width: 25%;
@@ -123,6 +131,6 @@ li.post p {
 }
 
 .Modal button.blueButton {
-  background-color:  rgb(52, 149, 182);
+  background-color: rgb(52, 149, 182);
   color: white;
 }

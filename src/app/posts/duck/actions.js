@@ -6,25 +6,25 @@ import {
   RESET_POSTS
 } from "./types";
 
-export const addPostAction = post => ({
+const addPostAction = post => ({
   type: ADD_POST,
   payload: { post }
 });
 
-export const resetPostsAction = () => ({
+const resetPostsAction = () => ({
   type: RESET_POSTS
 });
 
-export const incrementCounterAction = () => ({
+const incrementCounterAction = () => ({
   type: INCREMENT_COUNTER
 });
 
-export const getPostsAction = posts => ({
+const getPostsAction = posts => ({
   type: GET_POSTS,
   payload: { posts }
 });
 
-export const deletePostAction = id => ({
+const deletePostAction = id => ({
   type: DELETE_POST,
   payload: { id }
 });

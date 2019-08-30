@@ -1,10 +1,10 @@
 import { RESET_USERS, GET_USERS } from "./types";
 
-export const resetUsersAction = () => ({
+const resetUsersAction = () => ({
   type: RESET_USERS
 });
 
-export const getUsersAction = users => ({
+const getUsersAction = users => ({
   type: GET_USERS,
   payload: { users }
 });

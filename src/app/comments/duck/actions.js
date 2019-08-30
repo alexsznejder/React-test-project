@@ -1,15 +1,15 @@
 import { GET_COMMENTS, ADD_COMMENT, INCREMENT_COUNTER } from "./types";
 
-export const addCommentAction = comment => ({
+const addCommentAction = comment => ({
   type: ADD_COMMENT,
   payload: { comment }
 });
 
-export const incrementCounterAction = () => ({
+const incrementCounterAction = () => ({
   type: INCREMENT_COUNTER
 });
 
-export const getCommentsAction = comments => ({
+const getCommentsAction = comments => ({
   type: GET_COMMENTS,
   payload: { comments }
 });

@@ -3,22 +3,6 @@ div.users {
   margin: 70px auto;
 }
 
-/* div.box {
-  display: flex;
-  flex-wrap: wrap;
-  background-color: #ddd;
-  justify-content: space-between;
-  margin: -10px;
-}
-
-div.user {
-  margin: 10px;
-  flex-basis: 200px;
-  background-color: red;
-  box-sizing: border-box;
-  border: 3px solid black;
-} */
-
 div.box {
   display: flex;
   flex-wrap: wrap;
@@ -54,7 +38,7 @@ div.user div.details {
   text-align: center;
 }
 
-div.user div.details a{
+div.user div.details a {
   text-decoration: none;
   color: black;
   background-color: #fff;
@@ -68,5 +52,4 @@ div.user div.details a{
 
 div.user div.details a:hover {
   background-color: lightgray;
-  /* box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19); */
 }
