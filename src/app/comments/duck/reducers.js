@@ -1,8 +1,14 @@
-import { GET_COMMENTS, ADD_COMMENT, INCREMENT_COUNTER } from "./types";
+import {
+  GET_COMMENTS,
+  ADD_COMMENT,
+  INCREMENT_COUNTER,
+  COMMENTS_LOADING
+} from "./types";
 
 const INITIAL_STATE = {
   counter: 0,
-  list: []
+  list: [],
+  isLoading: false
 };
 
 const commentsReducer = (state = INITIAL_STATE, action) => {
@@ -22,7 +28,13 @@ const commentsReducer = (state = INITIAL_STATE, action) => {
     case GET_COMMENTS:
       return {
         ...state,
-        list: payload.comments
+        list: payload.comments,
+        counter: payload.comments.length
+      };
+    case COMMENTS_LOADING:
+      return {
+        ...state,
+        isLoading: payload.isLoading
       };
     default:
       return state;

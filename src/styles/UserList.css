@@ -53,3 +53,7 @@ div.user div.details a {
 div.user div.details a:hover {
   background-color: lightgray;
 }
+
+div.loading {
+  margin: 50px 5%;
+}

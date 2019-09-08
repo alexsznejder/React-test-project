@@ -1,8 +1,9 @@
 import React from "react";
 import Post from "./Post";
-import "./UserDetails.css";
+import "../styles/UserDetails.css";
 import { Link } from "react-router-dom";
 import Modal from "react-modal";
+import ModalRow from "./ModalRow";
 import { connect } from "react-redux";
 import {
   getPosts,
@@ -11,7 +12,6 @@ import {
   incrementCounter
 } from "../app/posts/duck";
 import { Formik } from "formik";
-import { async } from "q";
 
 Modal.setAppElement("#root");
 
@@ -19,7 +19,7 @@ class UserDetails extends React.Component {
   state = {
     isActive: false,
     user: this.props.users.list.find(
-      user => user.id == this.props.match.params.userId
+      user => user.id === parseInt(this.props.match.params.userId)
     )
   };
 
@@ -45,7 +45,7 @@ class UserDetails extends React.Component {
 
   postsList = () => {
     const userPosts = this.props.posts.list.filter(
-      post => post.userId == this.state.user.id
+      post => post.userId === parseInt(this.state.user.id)
     );
     return userPosts.map(post => (
       <Post
@@ -58,6 +58,14 @@ class UserDetails extends React.Component {
   };
 
   render() {
+    if (this.props.posts.isLoading) {
+      return (
+        <div className="loading">
+          <p>Loading...</p>
+        </div>
+      );
+    }
+
     return (
       <>
         <header>
@@ -105,7 +113,6 @@ class UserDetails extends React.Component {
               {({
                 values,
                 errors,
-                touched,
                 handleChange,
                 handleSubmit,
                 handleBlur,
@@ -113,43 +120,24 @@ class UserDetails extends React.Component {
               }) => (
                 <form onSubmit={handleSubmit}>
                   <h1>Add post</h1>
-                  <div className="row">
-                    <div className="labels">
-                      <label htmlFor="title">Title</label>
-                    </div>
-                    <div className="inputs">
-                      <input
-                        id="title"
-                        type="text"
-                        name="title"
-                        value={values.title}
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                      ></input>
-                      <div className="errors">
-                        {touched.title && errors.title}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="row">
-                    <div className="labels">
-                      <label htmlFor="body">Body</label>
-                    </div>
-                    <div className="inputs">
-                      <textarea
-                        id="body"
-                        name="body"
-                        type="text"
-                        value={values.body}
-                        onChange={handleChange}
-                      ></textarea>
-                      <div className="errors">
-                        {errors.body && touched.body && errors.body}
-                      </div>
-                    </div>
-                  </div>
-
+                  <ModalRow
+                    type="text"
+                    errors={errors}
+                    name="title"
+                    label="Title"
+                    value={values.title}
+                    handleChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <ModalRow
+                    type="textarea"
+                    errors={errors}
+                    name="body"
+                    label="Body"
+                    value={values.body}
+                    handleChange={handleChange}
+                    onBlur={handleBlur}
+                  />
                   <div className="row">
                     <button onClick={() => this.closeModal()}>Cancel</button>
                     <button

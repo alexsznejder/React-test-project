@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import User from "./User";
-import "./UserList.css";
+import "../styles/UserList.css";
 import { getUsers } from "../app/users/duck";
 
 class UserList extends React.Component {
@@ -15,6 +15,14 @@ class UserList extends React.Component {
   };
 
   render() {
+    if (this.props.users.isLoading) {
+      return (
+        <div className="loading">
+          <p>Loading...</p>
+        </div>
+      );
+    }
+
     return (
       <div className="users">
         <div className="box">{this.usersList()}</div>

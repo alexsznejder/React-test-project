@@ -3,12 +3,14 @@ import {
   RESET_POSTS,
   GET_POSTS,
   DELETE_POST,
-  INCREMENT_COUNTER
+  INCREMENT_COUNTER,
+  POSTS_LOADING
 } from "./types";
 
 const INITIAL_STATE = {
   counter: 0,
-  list: []
+  list: [],
+  isLoading: false
 };
 
 const postsReducer = (state = INITIAL_STATE, action) => {
@@ -35,10 +37,15 @@ const postsReducer = (state = INITIAL_STATE, action) => {
         list: payload.posts,
         counter: payload.posts.length
       };
+    case POSTS_LOADING:
+      return {
+        ...state,
+        isLoading: payload.isLoading
+      };
     case DELETE_POST:
       return {
         ...state,
-        list: state.list.filter(post => post.id != payload.id)
+        list: state.list.filter(post => post.id !== parseInt(payload.id))
       };
     default:
       return state;

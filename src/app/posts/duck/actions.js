@@ -3,12 +3,18 @@ import {
   DELETE_POST,
   GET_POSTS,
   INCREMENT_COUNTER,
-  RESET_POSTS
+  RESET_POSTS,
+  POSTS_LOADING
 } from "./types";
 
 const addPostAction = post => ({
   type: ADD_POST,
   payload: { post }
+});
+
+const postsLoadingAction = isLoading => ({
+  type: POSTS_LOADING,
+  payload: { isLoading }
 });
 
 const resetPostsAction = () => ({
@@ -30,16 +36,23 @@ const deletePostAction = id => ({
 });
 
 export const getPosts = () => async dispatch => {
+  dispatch(postsLoading(true));
+
   const response = await fetch("https://jsonplaceholder.typicode.com/posts", {
     method: "GET"
   });
   const posts = await response.json();
 
   dispatch(getPostsAction(posts));
+  dispatch(postsLoading(false));
 };
 
 export const addPost = post => dispatch => {
   dispatch(addPostAction(post));
+};
+
+export const postsLoading = isLoading => dispatch => {
+  dispatch(postsLoadingAction(isLoading));
 };
 
 export const resetPosts = () => dispatch => {

@@ -1,7 +1,8 @@
-import { GET_USERS, RESET_USERS } from "./types";
+import { GET_USERS, RESET_USERS, USERS_LOADING } from "./types";
 
 const INITIAL_STATE = {
-  list: []
+  list: [],
+  isLoading: false
 };
 
 const usersReducer = (state = INITIAL_STATE, action) => {
@@ -17,6 +18,11 @@ const usersReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         list: []
+      };
+    case USERS_LOADING:
+      return {
+        ...state,
+        isLoading: payload.isLoading
       };
     default:
       return state;
