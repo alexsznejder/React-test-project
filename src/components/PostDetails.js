@@ -188,7 +188,6 @@ const mapStateToProps = state => ({
   posts: state.posts,
   users: state.users
 });
-
 export default connect(
   mapStateToProps,
   { getComments, addComment, incrementCounter }

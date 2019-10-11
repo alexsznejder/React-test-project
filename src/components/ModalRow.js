@@ -31,5 +31,4 @@ const ModalRow = props => {
     </div>
   );
 };
-
 export default ModalRow;

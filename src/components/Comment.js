@@ -13,5 +13,4 @@ const Comment = ({ comment }) => {
     </li>
   );
 };
-
 export default Comment;

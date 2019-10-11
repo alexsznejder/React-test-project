@@ -34,7 +34,6 @@ class UserList extends React.Component {
 const mapStateToProps = state => ({
   users: state.users
 });
-
 export default connect(
   mapStateToProps,
   { getUsers }

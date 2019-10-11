@@ -13,5 +13,4 @@ const Page = () => {
     </Switch>
   );
 };
-
 export default Page;

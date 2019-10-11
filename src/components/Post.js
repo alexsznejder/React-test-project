@@ -16,5 +16,4 @@ const Post = ({ post, user, deletePost }) => {
     </li>
   );
 };
-
 export default Post;
